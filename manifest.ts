@@ -18,7 +18,11 @@ const manifest: chrome.runtime.ManifestV3 = {
   action: {},
   content_scripts: [
     {
-      matches: ["https://kaguya.app/*", "http://localhost/*"],
+      matches: [
+        "https://kaguya.app/*",
+        "http://localhost/*",
+        "https://*.kaguya.app/*",
+      ],
       js: ["src/pages/content/index.js"],
       run_at: "document_start",
     },
