@@ -27,6 +27,13 @@ const manifest: chrome.runtime.ManifestV3 = {
       run_at: "document_start",
     },
   ],
+  externally_connectable: {
+    matches: [
+      "https://kaguya.app/*",
+      "https://*.kaguya.app/*",
+      "http://localhost/*",
+    ],
+  },
   devtools_page: "src/pages/devtools/index.html",
   web_accessible_resources: [
     {

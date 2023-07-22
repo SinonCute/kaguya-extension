@@ -108,7 +108,7 @@ export function onMessage(
 }
 
 export const registerListener = async () => {
-  chrome.runtime.onMessage.addListener((event, sender, sendResponse) => {
+  chrome.runtime.onMessageExternal.addListener((event, _, sendResponse) => {
     (async () => {
       if (!event?.endpoint || event?.type !== EventType.Request) {
         return;

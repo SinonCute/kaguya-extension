@@ -11,6 +11,7 @@ const rootDir = resolve(__dirname);
 const srcDir = resolve(rootDir, "src");
 const pagesDir = resolve(srcDir, "pages");
 const assetsDir = resolve(srcDir, "assets");
+const scriptsDir = resolve(srcDir, "scripts"); // Add the scripts directory
 const outDir = resolve(rootDir, "dist");
 const publicDir = resolve(rootDir, "public");
 
@@ -41,7 +42,7 @@ export default defineConfig({
   publicDir,
   build: {
     outDir,
-    /** Can slowDown build speed. */
+    /** Can slow down build speed. */
     // sourcemap: isDev,
     minify: isProduction,
     reportCompressedSize: isProduction,
