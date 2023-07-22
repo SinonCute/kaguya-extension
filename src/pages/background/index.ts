@@ -1,6 +1,6 @@
 import AnimeSource from "@src/core/AnimeSource";
 import MangaSource from "@src/core/MangaSource";
-import Source, { SourceProps } from "@src/core/Source";
+import { SourceProps } from "@src/core/Source";
 import { anime, manga } from "@src/sources";
 import { getDomainFromUrl } from "@src/utils";
 import { onMessage, registerListener } from "@src/utils/events";
@@ -225,23 +225,21 @@ const initializeListeners = () => {
   });
 };
 
-chrome.runtime.onInstalled.addListener(function () {
-  console.log("On installed");
+console.log("On installed");
 
-  chrome.action.onClicked.addListener(() => {
-    chrome.tabs.create({
-      url: chrome.runtime.getURL("src/pages/options/index.html"),
-      active: true,
-    });
+chrome.action.onClicked.addListener(() => {
+  chrome.tabs.create({
+    url: chrome.runtime.getURL("src/pages/options/index.html"),
+    active: true,
   });
-
-  // Listener (communication between web page and chrome extension)
-  registerListener();
-  initializeListeners();
-
-  (async () => {
-    // Rules
-    await clearRules();
-    await updateRules();
-  })();
 });
+
+// Listener (communication between web page and chrome extension)
+registerListener();
+initializeListeners();
+
+(async () => {
+  // Rules
+  await clearRules();
+  updateRules();
+})();
