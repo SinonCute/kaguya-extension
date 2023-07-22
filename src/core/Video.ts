@@ -8,7 +8,7 @@ export enum VideoFormat {
 
 export interface VideoType {
   quality?: string;
-  format: VideoFormat;
+  format?: VideoFormat;
   file: FileUrlType;
 }
 
