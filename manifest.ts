@@ -1,19 +1,25 @@
 import packageJson from "./package.json";
 
+const name = "Kaguya";
+const description = "An extension that allow you to use Kaguya";
+
 /**
  * After changing, please reload the extension at `chrome://extensions`
  */
 const manifest: chrome.runtime.ManifestV3 = {
   manifest_version: 3,
-  name: packageJson.name,
+  name,
   version: packageJson.version,
-  description: packageJson.description,
+  description,
   background: {
     service_worker: "src/pages/background/index.js",
     type: "module",
   },
   icons: {
-    "128": "icon-128.png",
+    "16": "icon16.png",
+    "32": "icon32.png",
+    "48": "icon48.png",
+    "128": "icon128.png",
   },
   action: {},
   content_scripts: [
@@ -40,19 +46,16 @@ const manifest: chrome.runtime.ManifestV3 = {
       resources: [
         "assets/js/*.js",
         "assets/css/*.css",
-        "icon-128.png",
-        "icon-34.png",
+        "icon16.png",
+        "icon32.png",
+        "icon48.png",
+        "icon128.png",
         "src/pages/sandbox/index.html",
       ],
       matches: ["*://*/*"],
     },
   ],
-  permissions: [
-    "declarativeNetRequestFeedback",
-    "declarativeNetRequest",
-    "scripting",
-    "offscreen",
-  ],
+  permissions: ["declarativeNetRequest", "offscreen"],
   host_permissions: ["*://*/*"],
   content_security_policy: {
     extension_pages:

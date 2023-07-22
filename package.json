@@ -1,7 +1,7 @@
 {
   "name": "kaguya-extension",
-  "version": "1.0.6",
-  "description": "An extension for Kaguya",
+  "version": "1.0.7",
+  "description": "An extension that allow you to use Kaguya",
   "license": "MIT",
   "repository": {
     "type": "git",

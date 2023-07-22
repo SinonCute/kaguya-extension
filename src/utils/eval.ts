@@ -29,26 +29,4 @@ export const evalScript = async <T extends unknown>(
       type: "SANDBOX_EVAL",
     });
   });
-
-  // return new Promise((resolve) => {
-  //   chrome.tabs.query(
-  //     {
-  //       active: true,
-  //       status: "complete",
-  //     },
-  //     async (tabs) => {
-  //       const tab = tabs[0];
-  //       const tabId = tab.id;
-  //       const result = await chrome.scripting.executeScript({
-  //         target: { tabId },
-  //         func: (script) => {
-  //           return eval(script);
-  //         },
-  //         args: [script],
-  //       });
-  //       console.log(result);
-  //       resolve(result[0].result);
-  //     }
-  //   );
-  // });
 };
