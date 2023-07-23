@@ -116,7 +116,7 @@ export default class AnimeVietSub extends AnimeSource {
         const $el = $(episodeEl);
 
         const name = $el.attr("title");
-        const number = parseNumberFromString(name).toString();
+        const number = parseNumberFromString(name, "Full").toString();
         const id = $el.data("id").toString();
 
         if (!name || !id) return;

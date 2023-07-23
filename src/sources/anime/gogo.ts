@@ -72,7 +72,8 @@ export default class Gogo extends AnimeSource {
         const id = $(el).find("a").attr("href").trim().replace("/", "");
 
         const number = parseNumberFromString(
-          $(el).find(".name").text()
+          $(el).find(".name").text(),
+          "Full"
         ).toString();
 
         return {

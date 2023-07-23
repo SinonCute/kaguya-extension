@@ -1,7 +1,7 @@
 import { FileUrlType } from "./FileUrl";
 
 export enum VideoFormat {
-  M3U8 = "m3u8",
+  HLS = "hls",
   DASH = "dash",
   CONTAINER = "container",
 }
