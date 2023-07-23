@@ -66,33 +66,40 @@ export default class AnimeVietSub extends AnimeSource {
   }
 
   async getAnimeId(anilist: any): Promise<DataWithExtra<string>> {
-    const response = await fetch(
-      `https://animevietsub.moe/tim-kiem/${encodeURI(
-        anilist.title.userPreferred
-      )}/`
-    );
-    const text = await response.text();
+    let data = JSON.stringify({
+      query: `query {
+        animeMapping(id: ${anilist.id}, providerId: "AnimeVietsub") {
+            animeId
+            mediaId
+            providerId
+        }
+    }`,
+    });
 
-    const $ = load(text);
+    let config = {
+      method: "post",
+      url: "https://api-vn.karyl.live/graphql",
+      headers: {
+        "User-Agent": "Karyl/1.0.0",
+        "Content-Type": "application/json",
+      },
+      body: data,
+    };
 
-    const list = $(".TPostMv").toArray();
+    const response = await fetch(config.url, config);
+    const json = (await response.json()) as {
+      data: {
+        animeMapping: {
+          animeId: string;
+          mediaId: string;
+          providerId: string;
+        };
+      };
+    };
 
-    const animeList: { id: string; year: number | null }[] = [];
-
-    for (const el of list) {
-      const id = urlToId($(el).find("a").attr("href"));
-      const year = $(el).find(".Info .Date.AAIco-date_range").text().trim();
-
-      animeList.push({ id, year: Number(year) });
-    }
-
-    const anime = animeList.find(
-      (anime) => anime?.year === anilist?.seasonYear
-    );
-
-    const id = anime?.id || animeList?.[0]?.id;
-
-    return { data: id };
+    return {
+      data: json?.data?.animeMapping?.mediaId,
+    };
   }
 
   async loadEpisodes(animeId: string): Promise<EpisodeType[]> {
